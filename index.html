@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Birthday gift</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #5398d4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      text-align: center;
+      background: rgb(5, 36, 211);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(247, 243, 243, 0.1);
+      width: 90%;
+      max-width: 400px;
+    }
+
+    input, button {
+      padding: 10px;
+      margin-top: 15px;
+      font-size: 16px;
+      border: 1px solid #e95ddb;
+      border-radius: 6px;
+      width: 100%;
+    }
+
+    button {
+      background-color: #f92c2c;
+      color: rgb(213, 233, 101);
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #ff1493;
+    }
+
+    .heart {
+      font-size: 80px;
+      margin: 20px 0;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0); }
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="step1">
+      <h1>Welcome to the Friend Gift</h1>
+      <p>Friendship is the golden thread that ties hearts together.</p>
+      <button onclick="nextStep('step2')">Continue</button>
+    </div>
+
+    <div id="step2" class="hidden">
+      <h2>Enter Your Friend Key</h2>
+      <input type="text" id="friend Key" placeholder="Friend Key" required>
+      <button onclick="nextStep('step3')">Submit</button>
+    </div>
+
+    <div id="step3" class="hidden">
+      <div class="heart">❤️</div>
+      <label for="name">What's your name?</label>
+      <input type="text" id="name" required>
+      <button onclick="showMessage()">Reveal Message</button>
+    </div>
+
+    <div id="step4" class="hidden">
+      <h2 id="greeting">Dear Uncle,</h2>
+      <p>You are truly cherished. Thank you for being a wonderful part of my life! you are the one who is begining the best friend ever that what i am happy to be with you i think thi would until the life long friendship</p>
+    </div>
+  </div>
+
+  <script>
+    function nextStep(stepId) {
+      document.querySelectorAll('.container > div').forEach(div => div.classList.add('hidden'));
+      document.getElementById(stepId).classList.remove('hidden');
+    }
+
+    function showMessage() {
+      const name = document.getElementById('name').value;
+      if (name.trim()) {
+        document.getElementById('greeting').textContent = `Dear ${name},`;
+        nextStep('step4');
+      }
+    }
+  </script>
+</body>
+</html>
